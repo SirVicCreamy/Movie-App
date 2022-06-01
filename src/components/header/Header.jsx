@@ -22,7 +22,7 @@ const headerNav = [
     {
         display: 'Login',
         path: '/login'
-    },
+    }
 
 ];
 

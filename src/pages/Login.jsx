@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import "./detail/login.scss";
 
 function Login() {
-  // React States
+
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // User Login info
+
   const database = [
     {
       username: "user1",
@@ -22,39 +22,41 @@ function Login() {
 
   const errors = {
     uname: "invalid username",
-    pass: "invalid password"
+    pass: "invalid password",
   };
 
   const handleSubmit = (event) => {
-    //Prevent page reload
+
+
     event.preventDefault();
 
     var { uname, pass } = document.forms[0];
 
-    // Find user login info
+
     const userData = database.find((user) => user.username === uname.value);
 
-    // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
-        // Invalid password
+
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
       }
     } else {
-      // Username not found
+
+
       setErrorMessages({ name: "uname", message: errors.uname });
     }
+
   };
 
-  // Generate JSX code for error message
+
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
     );
 
-  // JSX code for login form
+
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
@@ -83,6 +85,15 @@ function Login() {
       </div>
     </div>
   );
+}
+
+
+export function check_db(name, pass) {
+  let wrong = "nothing wrong";
+  if (!(name == 'user1' || name == 'user2')) {wrong = "wrong user";}
+  if (!(pass == 'pass1' || pass == 'pass2')) {wrong = "wrong pass";}
+  return wrong;
+
 }
 
 export default Login;
